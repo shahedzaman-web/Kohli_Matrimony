@@ -1,12 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import ContactUs from './pages/ContactUs';
+import DiscoverMatches from './pages/DiscoverMatches';
+import EditPreference from './pages/EditPreference';
+import EditProfile from './pages/EditProfile';
+import Messages from './pages/Messages';
+import RegisterPersonal from './pages/RegisterPersonal';
+import SearchByPreferences from './pages/SearchByPreferences';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+     <ImageBackground source={require('./Icons/Bg.png')}  style={styles.image}>
+    {/* <ContactUs/> */}
+    {/* <DiscoverMatches/> */}
+    {/* <EditPreference/> */}
+    {/* <EditProfile/> */}
+    {/* <Messages/> */}
+    {/* <SearchByPreferences/> */}
+
+    <RegisterPersonal/>
+
+
+
+     </ImageBackground>
     </View>
   );
 }
@@ -14,8 +32,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+   
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+ 
   },
 });
