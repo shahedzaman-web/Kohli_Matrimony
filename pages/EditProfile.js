@@ -6,6 +6,7 @@ import { useState } from "react";
 import { TextInput } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Checkbox } from "react-native-paper";
+import Screen from '../components/Screen';
 export default function EditProfile() {
   const [address, setAddress] = useState("");
   const [personality, setPersonality] = useState("");
@@ -23,7 +24,9 @@ export default function EditProfile() {
   const [checkedFemale, setCheckedFemale] = useState(false);
   const [state, setState] = useState("");
   const [steetName, setSteetName] = useState("");
+ 
   return (
+    <Screen>
     <View style={styles.container}>
       <NavItem title="Edit Profile" />
       <View style={styles.inputArea}>
@@ -144,10 +147,13 @@ export default function EditProfile() {
           value={personality}
         />
         <View style={styles.submitView}>
-          <TouchableOpacity style={styles.submitBtn}>Submit</TouchableOpacity>
+          <TouchableOpacity style={styles.submitBtn}>
+           <Text style={styles.submitText}>Submit</Text>
+            </TouchableOpacity>
         </View>
       </View>
     </View>
+    </Screen>
   );
 }
 const styles = StyleSheet.create({
@@ -187,11 +193,16 @@ const styles = StyleSheet.create({
   submitBtn: {
     height: 40,
     width: 80,
-    textAlign: "center",
-    color: "white",
-    fontSize: 16,
+    
+    display: "flex",
+
+    paddingTop: 8,
     borderRadius: 2,
     alignSelf: "center",
     backgroundColor: "#8D2828",
-  },
+  },submitText:{
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+  }
 });

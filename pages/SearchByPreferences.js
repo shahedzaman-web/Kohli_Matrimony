@@ -6,6 +6,7 @@ import BottonMenu from "../components/BottomMenu";
 import { Picker } from "@react-native-picker/picker";
 import { TextInput } from "react-native-paper";
 import { useState } from "react";
+import Screen from "../components/Screen";
 
 export default function SearchByPreferences() {
   const [maritalStatus, setMaritalStatus] = useState("");
@@ -17,6 +18,7 @@ export default function SearchByPreferences() {
   const [occupation, setOccupation] = useState("");
   const [expectations, setExpectations] = useState("");
   return (
+    <Screen>
     <View style={styles.container}>
       <View style={styles.topView}>
         <NavItem title="Search By Preferences" />
@@ -86,7 +88,9 @@ export default function SearchByPreferences() {
           />
            <View style={styles.submitView}>
           <TouchableOpacity mode="contained" style={styles.submitBtn}>
-            Submit
+           <Text>
+           Submit
+             </Text>  
           </TouchableOpacity>
         </View>
         </View>
@@ -95,6 +99,7 @@ export default function SearchByPreferences() {
         <BottonMenu />
       </View>
     </View>
+    </Screen>
   );
 }
 

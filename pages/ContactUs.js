@@ -65,7 +65,8 @@ export default function componentName() {
 }
 const styles = StyleSheet.create({
   container:{
-    padding: 32
+    padding: 32,
+    paddingTop: 36,
   }
 ,
   infoText: {

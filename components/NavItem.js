@@ -1,13 +1,19 @@
 import React from 'react';
-import { View, Text , StyleSheet, Image } from 'react-native';
+import { View, Text , StyleSheet, Image,TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function NavItem({title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.navView}>
-    <Image
+      <TouchableOpacity  onPress={() => 
+        navigation.navigate("Home")}>
+      <Image
       style={styles.navImage}
       source={require("./../Icons/Back.png")}
     />
+      </TouchableOpacity>
+   
     <Text style={styles.headerText} > {title}</Text>
   </View>
   );

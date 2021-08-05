@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import NavItem from "../components/NavItem";
 import { Picker } from "@react-native-picker/picker";
 import { TextInput } from "react-native-paper";
+import Screen from "../components/Screen";
 
 export default function EditPreference() {
   const [address, setAddress] = useState("");
@@ -15,16 +16,17 @@ export default function EditPreference() {
   const[jobStatus, setJobStatus] = useState("");
   console.log(address, personality, city, marriedStatus);
   return (
+    <Screen>
     <View style={styles.container}>
       <NavItem title="Edit Preferences" />
-      <View style={styles.inputArea}>
+      <ScrollView style={styles.inputArea}>
         <Picker
           style={styles.pickerStyle}
           selectedValue={marriedStatus}
           onValueChange={(itemValue, itemIndex) => setMarriedStatus(itemValue)}
         >
           <Picker.Item label="Never Married" value="NeverMarried" />
-          <Picker.Item label="Never Mdarried" value="NeverMadrried" />
+          <Picker.Item label="Divorced" value="divorced" />
         </Picker>
 
         <TextInput
@@ -43,6 +45,7 @@ export default function EditPreference() {
          selectedValue={selectCity}
          onValueChange={(itemValue, itemIndex) => setSelectCity(itemValue)}>
           <Picker.Item label="Gandhinagar" value="Gandhinagar" />
+          <Picker.Item label="Gandhinagar2" value="Gandhinagar2" />
         </Picker>
         <Picker style={styles.pickerStyle}
          selectedValue={area}
@@ -69,11 +72,12 @@ export default function EditPreference() {
         />
         <View style={styles.submitView}>
           <TouchableOpacity mode="contained" style={styles.submitBtn}>
-            Submit
+            <Text style={styles.submitText}>Submit</Text> 
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
+    </Screen>
   );
 }
 const styles = StyleSheet.create({
@@ -82,38 +86,43 @@ const styles = StyleSheet.create({
     paddingLeft: 32,
   },
   inputArea: {
-    paddingTop: 20,
+    display: "flex",
+    flexDirection: "column",
+    
   },
   inputStyle: {
-    height: 40,
+    
     width: "90%",
     marginBottom: 2,
     borderBottomColor: "black",
     backgroundColor: "transparent",
   },
   pickerStyle: {
-    height: 40,
     borderColor: "transparent",
-    borderBottomColor: "black",
-    borderBottomWidth: StyleSheet.hairlineWidth,
     width: "90%",
     backgroundColor: "transparent",
-    marginBottom: 5,
+    height: "10%",
+    marginBottom: 50
   },
-
   submitView: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 50,
   },
   submitBtn: {
     height: 30,
     width: 120,
     textAlign: "center",
     alignItems: "center",
-    color: "white",
-    borderRadius: 2,
+   display: "flex",
+    borderRadius: 4,
     backgroundColor: "#8D2828",
-  },
+  },submitText:{
+    display: "flex",
+    justifyContent: "center",
+    paddingTop: 5,
+    color: "white",
+    alignSelf: "center",
+  }
 });

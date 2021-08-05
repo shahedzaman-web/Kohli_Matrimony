@@ -3,15 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import NavItem from "../components/NavItem";
 import { Avatar } from "react-native-paper";
 import BottonMenu from "../components/BottomMenu";
+import Screen from "../components/Screen";
 
 export default function Messages() {
   return (
+    <Screen>
     <View style={styles.container}>
       <View style={styles.topView}>
         <NavItem title="Messages" />
         <View style={styles.chatContainer}>
           <TouchableOpacity style={styles.chatView}>
-            {" "}
             <Avatar.Image size={60} source={require("./../images/face.jpg")} />
             <View style={styles.chatText}>
               <Text style={styles.nameText}>Laksh</Text>
@@ -19,7 +20,6 @@ export default function Messages() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.chatView}>
-            {" "}
             <Avatar.Image size={60} source={require("./../images/face.jpg")} />
             <View style={styles.chatText}>
               <Text style={styles.nameText}>Laksh</Text>
@@ -27,16 +27,14 @@ export default function Messages() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.chatView}>
-            {" "}
-            <Avatar.Image size={60} source={require("./../images/face.jpg")} />
+           <Avatar.Image size={60} source={require("./../images/face.jpg")} />
             <View style={styles.chatText}>
               <Text style={styles.nameText}>Laksh</Text>
               <Text>Hi</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.chatView}>
-            {" "}
-            <Avatar.Image size={60} source={require("./../images/face.jpg")} />
+           <Avatar.Image size={60} source={require("./../images/face.jpg")} />
             <View style={styles.chatText}>
               <Text style={styles.nameText}>Laksh</Text>
               <Text>Hi</Text>
@@ -48,6 +46,7 @@ export default function Messages() {
         <BottonMenu />
       </View>
     </View>
+    </Screen>
   );
 }
 

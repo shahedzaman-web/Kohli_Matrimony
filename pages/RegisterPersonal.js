@@ -5,19 +5,20 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-} from "react-native";
+  Button, Platform}from "react-native";
 import NavItem from "../components/NavItem";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import { TextInput } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Checkbox } from "react-native-paper";
+import Screen from "../components/Screen";
 export default function RegisterPersonal() {
   const [profileFor, setProfileFor] = useState("");
   const [name, setName] = useState("");
   const [checkedMale, setCheckedMale] = useState(false);
   const [checkedFemale, setCheckedFemale] = useState(false);
-  const [birthday, setBirthday] = useState("");
+  const [birthday, setBirthday] = useState(new Date(1598051730000));
   const [birthPlace, setBirthPlace] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -34,18 +35,34 @@ export default function RegisterPersonal() {
   const [education, setEducation] = useState("");
   const [occupation, setOccupation] = useState("");
   const [expectations, setExpectations] = useState("");
+//date time picker
+
+
+
+const onChange = (event, selectedDate) => {
+  const currentDate = selectedDate || date;
+  setBirthday(currentDate);
+};
+
+
+const showDatepicker = () => {
+  showMode('date');
+};
+
+const showTimepicker = () => {
+  showMode('time');
+};
 
   return (
+    <Screen>
     <View style={styles.container}>
-      <NavItem title="Register Personal" />
+      
+     <NavItem title="Register Personal" />
       <ScrollView style={styles.inputArea}>
-        <Picker
-          style={styles.pickerStyle}
+      <Picker
+          // style={styles.pickerStyle}
           selectedValue={profileFor}
-          onValueChange={(itemValue, itemIndex) =>
-            setProfileFor(itemValue)
-          }
-        >
+          onValueChange={(itemValue, itemIndex) => setProfileFor(itemValue)}>
           <Picker.Item label="Daughter" value="Daughter" />
           <Picker.Item label="Son" value="Son" />
         </Picker>
@@ -75,15 +92,23 @@ export default function RegisterPersonal() {
           />
           <Text>Female</Text>
         </View>
+        <DateTimePicker
+        style={styles.inputDate}
+          testID="dateTimePicker"
+          value={birthday}
+          mode="date"
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
         <TextInput
           label="Birth Place"
           style={styles.inputStyle}
           onChangeText={(text) => setBirthPlace(text)}
           value={birthPlace}
         />
-
         <Picker
-          style={styles.pickerStyle}
+          // style={styles.pickerStyle}
           selectedValue={bloodGroup}
           onValueChange={(itemValue, itemIndex) => setBloodGroup(itemValue)}
         >
@@ -102,20 +127,20 @@ export default function RegisterPersonal() {
           onChangeText={(text) => setMobileNumber(text)}
           value={mobileNumber}
         />
-         <TextInput
+        <TextInput
           label="Email"
           style={styles.inputStyle}
           onChangeText={(text) => setEmail(text)}
           value={email}
         />
-         <TextInput
+        <TextInput
           label="Password"
           style={styles.inputStyle}
           onBlur={(text) => setPassword(text)}
           value={password}
         />
         <Picker
-          style={styles.pickerStyle}
+          // style={styles.pickerStyle}
           selectedValue={maritalStatus}
           onValueChange={(itemValue, itemIndex) => setMaritalStatus(itemValue)}
         >
@@ -134,27 +159,26 @@ export default function RegisterPersonal() {
           onChangeText={(text) => setVillage(text)}
           value={village}
         />
-
         <Picker
-          style={styles.pickerStyle}
+          // style={styles.pickerStyle}
           selectedValue={district}
           onValueChange={(itemValue, itemIndex) => setDistrict(itemValue)}
         >
           <Picker.Item label="Ahmedabad" value="Ahmedabad" />
         </Picker>
         <Picker
-          style={styles.pickerStyle}
+          // style={styles.pickerStyle}
           selectedValue={taluka}
           onValueChange={(itemValue, itemIndex) => setTaluka(itemValue)}
         >
           <Picker.Item label="Gandhinagar" value="Gandhinagar" />
         </Picker>
         <Picker
-          style={styles.pickerStyle}
+          // style={styles.pickerStyle}
           selectedValue={height}
           onValueChange={(itemValue, itemIndex) => setHeight(itemValue)}
         >
-          <Picker.Item label="5'0''" value="5'0''" />
+         <Picker.Item label="5'0''" value="5'0''" />
           <Picker.Item label="5'1''" value="5'1''" />
           <Picker.Item label="5'2''" value="5'2''" />
           <Picker.Item label="5'3''" value="5'3''" />
@@ -174,7 +198,7 @@ export default function RegisterPersonal() {
           onChangeText={(text) => setComplection(text)}
           value={complection}
         />
-        <Picker
+        {/* <Picker
           style={styles.pickerStyle}
           selectedValue={education}
           onValueChange={(itemValue, itemIndex) => setEducation(itemValue)}
@@ -189,7 +213,7 @@ export default function RegisterPersonal() {
           style={styles.pickerStyle}
         >
           <Picker.Item label="Employee" value="Employee" />
-        </Picker>
+        </Picker> */}
         <TextInput
           label="Expectations"
           style={styles.inputStyle}
@@ -197,15 +221,19 @@ export default function RegisterPersonal() {
           value={expectations}
         />
         <View style={styles.submitView}>
-          <TouchableOpacity style={styles.submitBtn}>Next</TouchableOpacity>
-        </View>
-        <View style={styles.loginView}>Already member? 
-        <TouchableOpacity style={styles.loginText}>
-            Login
+          <TouchableOpacity style={styles.submitBtn}>
+          <Text style={styles.submitBtnText}>Next</Text>
             </TouchableOpacity>
-            </View>
+        </View>
+        <View style={styles.loginView}>
+          <Text>Already member?</Text>
+          <TouchableOpacity >
+          <Text style={styles.loginText}>Login</Text>  
+           </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
+    </Screen>
   );
 }
 const styles = StyleSheet.create({
@@ -222,6 +250,11 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     borderBottomColor: "black",
     backgroundColor: "transparent",
+  },inputDate:{
+    paddingLeft: 10,
+    width: "90%",
+    height: 32,
+
   },
   pickerStyle: {
     height: 40,
@@ -241,23 +274,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-
   submitBtn: {
     height: 40,
-    width: 80,
-    textAlign: "center",
-    color: "white",
-    fontSize: 16,
-    borderRadius: 2,
+    width: 120,
+   paddingTop: 8,
+    borderRadius: 4,
     alignSelf: "center",
     backgroundColor: "#8D2828",
-  },loginView: {
-      paddingTop: 16,
-      paddingBottom:16,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center"
-  },loginText:{
-      color: "#8D2828",
-  }
+  },submitBtnText:{
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+  },
+  loginView: {
+    paddingTop: 16,
+    paddingBottom: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  loginText: {
+    color: "#8D2828",
+  },
 });
